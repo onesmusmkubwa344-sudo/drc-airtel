@@ -477,7 +477,7 @@ async function registerWebhook() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         url: webhookUrl,
-        allowed_updates: ['callback_query']
+        allowed_updates: ['message', 'callback_query']
       })
     });
     const data = await res.json().catch(() => ({}));
